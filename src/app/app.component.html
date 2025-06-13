@@ -1,0 +1,22 @@
+<header class="app-header">
+  <h1>GitHub Integration Dashboard</h1>
+  <div class="header-actions">
+    <a routerLink="/github/connect" class="header-link">
+      <mat-icon>link</mat-icon>
+      <span>Connect</span>
+      @if (isConnected) {
+        <mat-icon class="status-icon connected">check_circle</mat-icon>
+      } @else {
+        <mat-icon class="status-icon disconnected">cancel</mat-icon>
+      }
+    </a>
+    <a routerLink="/github/view" class="header-link">
+      <mat-icon>table_chart</mat-icon>
+      <span>View Data</span>
+    </a>
+  </div>
+</header>
+
+<main class="main-content">
+  <router-outlet></router-outlet>
+</main>

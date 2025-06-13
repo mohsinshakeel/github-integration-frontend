@@ -1,0 +1,21 @@
+<mat-toolbar color="primary">
+  <span>GitHub Integration Dashboard</span>
+  <span class="spacer"></span>
+  
+  <nav>
+    <a mat-button routerLink="/github/connect" routerLinkActive="active">
+      <mat-icon>link</mat-icon>
+      Connect
+      @if (isConnected) {
+        <mat-icon class="status-icon connected">check_circle</mat-icon>
+      } @else {
+        <mat-icon class="status-icon disconnected">cancel</mat-icon>
+      }
+    </a>
+    
+    <a mat-button routerLink="/github/view" routerLinkActive="active" [disabled]="!isConnected">
+      <mat-icon>table_chart</mat-icon>
+      View Data
+    </a>
+  </nav>
+</mat-toolbar>

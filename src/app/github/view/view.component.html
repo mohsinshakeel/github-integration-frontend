@@ -1,0 +1,87 @@
+<div class="raw-data-container">
+  <div class="header">
+    <h1>Raw Data</h1>
+    <div class="actions">
+      <button mat-raised-button class="action-button new-grid-button" (click)="newGrid()">New Grid</button>
+      <button mat-raised-button class="action-button new-global-search-button" (click)="newGlobalSearchGrid()">New Global Search Grid</button>
+    </div>
+    <div class="spacer"></div>
+  </div>
+
+  <div class="filters">
+    <div class="filter-group">
+      <label>Active Integrations:</label>
+      <div class="select-container">
+        <select [(ngModel)]="selectedCollection" (change)="onCollectionChange()">
+          <option value="harvest">Harvest</option>
+          <option *ngFor="let collection of collections" [value]="collection.value">
+            {{collection.label}}
+          </option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label>Entity:</label>
+      <div class="select-container">
+        <select [(ngModel)]="selectedEntity" (change)="onCollectionChange()">
+          <option value="projects">Projects</option>
+          <option value="repos">Repositories</option>
+          <option value="users">Users</option>
+        </select>
+      </div>
+    </div>
+
+    <div class="filter-group">
+      <label>Search:</label>
+      <div class="search-container">
+        <input 
+          [(ngModel)]="searchText" 
+          (ngModelChange)="onSearchChange()" 
+          placeholder="Search across all columns"
+          class="search-input">
+      </div>
+    </div>
+
+    <div class="spacer"></div>
+
+    <button class="delete-grid-button" (click)="deleteGrid()">
+      Delete Grid
+    </button>
+  </div>
+
+  <div class="button-container">
+    <button class="select-all-button" (click)="selectAll()">Select All</button>
+  </div>
+
+  <!-- AG Grid - Only render in browser -->
+  <div class="grid-container">
+    <ng-container *ngIf="isBrowser; else serverTemplate">
+      <ag-grid-angular
+        style="width: 100%; height: 100%;"
+        [theme]="theme"
+        [rowData]="rowData"
+        [columnDefs]="columnDefs"
+        [defaultColDef]="defaultColDef"
+        [pagination]="true"
+        [paginationPageSize]="20"
+        [animateRows]="true"
+        [rowSelection]="rowSelection"
+        [suppressNoRowsOverlay]="false"
+        [overlayNoRowsTemplate]="noRowsTemplate"
+        (gridReady)="onGridReady($event)">
+      </ag-grid-angular>
+    </ng-container>
+    
+    <ng-template #serverTemplate>
+      <div class="server-side-placeholder">
+        <div class="header-row">
+          <div class="header-cell" *ngFor="let col of columnDefs">
+            {{ col.headerName || '' }}
+          </div>
+        </div>
+        <div class="placeholder-message">Loading data grid...</div>
+      </div>
+    </ng-template>
+  </div>
+</div>

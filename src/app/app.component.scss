@@ -1,0 +1,60 @@
+.app-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0 24px;
+  height: 64px;
+  background-color: #3f51b5;
+  color: white;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  
+  h1 {
+    margin: 0;
+    font-size: 20px;
+    font-weight: 500;
+  }
+  
+  .header-actions {
+    display: flex;
+    align-items: center;
+    
+    .header-link {
+      display: flex;
+      align-items: center;
+      color: white;
+      text-decoration: none;
+      margin-left: 24px;
+      padding: 8px 12px;
+      border-radius: 4px;
+      transition: background-color 0.3s;
+      
+      &:hover {
+        background-color: rgba(255, 255, 255, 0.1);
+      }
+      
+      mat-icon {
+        margin-right: 4px;
+      }
+      
+      .status-icon {
+        margin-left: 4px;
+        font-size: 16px;
+        height: 16px;
+        width: 16px;
+        
+        &.connected {
+          color: #4caf50;
+        }
+        
+        &.disconnected {
+          color: #f44336;
+        }
+      }
+    }
+  }
+}
+
+.main-content {
+  height: calc(100vh - 64px);
+  overflow-y: auto;
+}

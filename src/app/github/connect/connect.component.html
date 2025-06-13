@@ -1,0 +1,83 @@
+<div class="connect-container">
+  <div class="github-card">
+    <div class="card-header" (click)="toggleExpanded()">
+      <div class="github-logo">
+        <svg height="32" viewBox="0 0 16 16" width="32">
+          <path fill-rule="evenodd" d="M8 0C3.58 0 0 3.58 0 8c0 3.54 2.29 6.53 5.47 7.59.4.07.55-.17.55-.38 0-.19-.01-.82-.01-1.49-2.01.37-2.53-.49-2.69-.94-.09-.23-.48-.94-.82-1.13-.28-.15-.68-.52-.01-.53.63-.01 1.08.58 1.23.82.72 1.21 1.87.87 2.33.66.07-.52.28-.87.51-1.07-1.78-.2-3.64-.89-3.64-3.95 0-.87.31-1.59.82-2.15-.08-.2-.36-1.02.08-2.12 0 0 .67-.21 2.2.82.64-.18 1.32-.27 2-.27.68 0 1.36.09 2 .27 1.53-1.04 2.2-.82 2.2-.82.44 1.1.16 1.92.08 2.12.51.56.82 1.27.82 2.15 0 3.07-1.87 3.75-3.65 3.95.29.25.54.73.54 1.48 0 1.07-.01 1.93-.01 2.2 0 .21.15.46.55.38A8.013 8.013 0 0016 8c0-4.42-3.58-8-8-8z"></path>
+        </svg>
+      </div>
+      <div class="github-title">
+        Github
+      </div>
+      
+      <div class="spacer"></div>
+      
+      <ng-container *ngIf="status.connected">
+        <div class="success-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="#4caf50" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-2 15l-5-5 1.41-1.41L10 14.17l7.59-7.59L19 8l-9 9z"></path>
+          </svg>
+        </div>
+        
+        <div class="sync-icon">
+          <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="#757575" d="M12 4V1L8 5l4 4V6c3.31 0 6 2.69 6 6 0 1.01-.25 1.97-.7 2.8l1.46 1.46C19.54 15.03 20 13.57 20 12c0-4.42-3.58-8-8-8zm0 14c-3.31 0-6-2.69-6-6 0-1.01.25-1.97.7-2.8L5.24 7.74C4.46 8.97 4 10.43 4 12c0 4.42 3.58 8 8 8v3l4-4-4-4v3z"></path>
+          </svg>
+        </div>
+        
+        <div class="admin-info">
+          <div class="admin-label">Admin: {{ status.userData?.login || 'Unknown' }}</div>
+          <div class="last-synced">Last Synced: {{ formatDate(status.connectedAt) }}</div>
+          <div class="sync-type">Sync Type: {{ status.syncType }}</div>
+        </div>
+      </ng-container>
+      
+      <div class="expand-icon" [class.expanded]="isExpanded">
+        <svg width="24" height="24" viewBox="0 0 24 24">
+          <path d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"></path>
+        </svg>
+      </div>
+    </div>
+    
+    <div class="card-content" [class.collapsed]="!isExpanded">
+      <ng-container *ngIf="loading">
+        <div class="loading-container">
+          <mat-spinner diameter="40"></mat-spinner>
+          <p>Checking connection status...</p>
+        </div>
+      </ng-container>
+      
+      <ng-container *ngIf="!loading && status.connected">
+        <div class="connected-status">
+          <ng-container *ngIf="status.userData">
+            <div class="user-profile">
+              <div class="user-avatar">
+                <img [src]="status.userData.avatar_url" alt="GitHub Avatar">
+              </div>
+              <div class="user-details">
+                <div class="user-name">{{ status.userData.name || status.userData.login }}</div>
+                <div class="user-login">{{'@' + status.userData.login }}</div>
+                <div class="user-joined">Joined: {{ formatDate(status.userData.created_at) }}</div>
+              </div>
+            </div>
+          </ng-container>
+          <button class="remove-button" (click)="disconnectGitHub()">
+            Remove <mat-icon>delete</mat-icon>
+          </button>
+        </div>
+      </ng-container>
+      
+      <ng-container *ngIf="!loading && !status.connected">
+        <div class="disconnected-content">
+          <div class="connect-text">
+            Connect Sredio to Github
+          </div>
+          <button class="connect-button" (click)="connectToGitHub()">Connect</button>
+        </div>
+      </ng-container>
+    </div>
+  </div>
+</div>
+
+
+

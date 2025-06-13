@@ -1,0 +1,141 @@
+@use '@angular/material' as mat;
+@import 'ag-grid-community/styles/ag-grid.css';
+@import 'ag-grid-community/styles/ag-theme-alpine.css';
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+/* Override AG Grid styles */
+.ag-theme-alpine {
+  --ag-header-height: 48px;
+  --ag-header-foreground-color: rgba(0, 0, 0, 0.87);
+  --ag-header-background-color: #fafafa;
+  --ag-header-cell-hover-background-color: #f5f5f5;
+  --ag-row-hover-color: #f5f5f5;
+  --ag-selected-row-background-color: rgba(63, 81, 181, 0.1);
+  --ag-odd-row-background-color: #ffffff;
+  --ag-row-border-color: #e0e0e0;
+  --ag-font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, sans-serif;
+  
+  /* Additional styling for header cells */
+  .ag-header-cell {
+    font-weight: 500;
+    border-right: 1px solid #e0e0e0;
+    display: flex;
+    align-items: center;
+  }
+
+  .ag-header-cell-text {
+    font-weight: 500;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  /* Menu button styling */
+  .ag-header-cell-menu-button {
+    opacity: 1 !important;
+    margin-left: 4px;
+    color: rgba(0, 0, 0, 0.54);
+  }
+
+  .ag-header-cell-menu-button:hover {
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .ag-header-cell-menu-button .ag-icon-menu {
+    font-size: 16px;
+    font-weight: bold;
+  }
+
+  /* Cell styling */
+  .ag-cell {
+    padding: 0 16px;
+    line-height: 48px;
+    border-right: 1px solid #e0e0e0;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  /* Row styling */
+  .ag-row {
+    border-bottom: 1px solid #e0e0e0;
+    height: 48px;
+  }
+
+  /* Checkbox styling */
+  .ag-checkbox-input-wrapper {
+    font-size: 18px;
+    color: rgba(0, 0, 0, 0.54);
+    width: 18px;
+    height: 18px;
+  }
+
+  .ag-checkbox-input-wrapper.ag-checked {
+    color: #3f51b5;
+    background-color: transparent;
+  }
+
+  /* Menu panel styling */
+  .ag-menu {
+    background: white;
+    border-radius: 4px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15);
+  }
+}
+
+/* Material form field overrides */
+.mat-form-field-appearance-outline {
+  .mat-form-field-outline {
+    color: rgba(0, 0, 0, 0.12);
+  }
+
+  .mat-form-field-outline-thick {
+    color: rgba(0, 0, 0, 0.12);
+  }
+
+  .mat-form-field-infix {
+    padding: 0.5em 0;
+  }
+}
+
+/* Custom select styling */
+.custom-select-panel {
+  border-radius: 4px !important;
+  margin-top: 4px !important;
+  background: white;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.15) !important;
+}
+
+.mat-select-panel {
+  .mat-option {
+    height: 36px;
+    line-height: 36px;
+    font-size: 14px;
+    color: rgba(0, 0, 0, 0.87);
+  }
+
+  .mat-option:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+}
+
+
+
+
+
+
+
+
+

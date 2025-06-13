@@ -1,0 +1,51 @@
+.spacer {
+  flex: 1 1 auto;
+}
+
+nav {
+  display: flex;
+  
+  a {
+    display: flex;
+    align-items: center;
+    
+    mat-icon {
+      margin-right: 4px;
+    }
+    
+    &.active {
+      background-color: rgba(255, 255, 255, 0.15);
+    }
+    
+    .status-icon {
+      margin-left: 4px;
+      font-size: 16px;
+      height: 16px;
+      width: 16px;
+      
+      &.connected {
+        color: #4caf50;
+      }
+      
+      &.disconnected {
+        color: #f44336;
+      }
+    }
+  }
+}
+
+@media (max-width: 600px) {
+  mat-toolbar {
+    flex-direction: column;
+    height: auto;
+    padding: 12px;
+    
+    .spacer {
+      display: none;
+    }
+    
+    nav {
+      margin-top: 12px;
+    }
+  }
+}
